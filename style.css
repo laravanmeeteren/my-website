@@ -24,7 +24,7 @@ body {
 .container {
   max-width: 760px;
   margin: 0 auto;
-  border: none; /* Outer black box removed */
+  border: none;
   background-color: #f7f6f2;
   padding: 1rem 0;
 }
@@ -102,14 +102,16 @@ span.hover-thumb:hover {
 }
 
 /* ==========================================================================
-   Hero Portrait & Overlay
+   Hero Portrait & Bio Hover Overlay
    ========================================================================== */
 .hero-image-wrapper {
   position: relative;
   width: 100%;
   border: 1px solid #111111;
   margin-bottom: 2.5rem;
-  background-color: #ffffff;
+  background-color: #000000; /* Dark backdrop for text contrast */
+  overflow: hidden;
+  display: block;
 }
 
 .hero-image {
@@ -117,6 +119,13 @@ span.hover-thumb:hover {
   max-height: 540px;
   object-fit: cover;
   display: block;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Dim and grayscale image slightly on hover */
+.hero-image-wrapper:hover .hero-image {
+  opacity: 0.15;
+  filter: grayscale(100%);
 }
 
 .photo-overlay {
@@ -129,6 +138,62 @@ span.hover-thumb:hover {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
   pointer-events: none;
   z-index: 10;
+  transition: opacity 0.2s ease;
+}
+
+/* Hide photo credit on hover so text stays clean */
+.hero-image-wrapper:hover .photo-overlay {
+  opacity: 0;
+}
+
+/* Monospaced bio overlay container */
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.88); /* Solid dark backdrop over image */
+  color: #ffffff;
+  font-family: monospace;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  z-index: 20;
+  
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+/* Reveal bio overlay on hover */
+.hero-image-wrapper:hover .profile-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.profile-overlay .bio-title {
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dotted #666666;
+  padding-bottom: 0.25rem;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.profile-overlay p {
+  margin: 0 0 0.75rem 0;
+  color: #eeeeee;
 }
 
 /* ==========================================================================
@@ -310,131 +375,10 @@ a.meta-badge-link {
     transform: translateX(-50%);
     max-width: 200px;
   }
-   /* Card container holding the image and overlay */
-.profile-card {
-  position: relative;
-  width: 280px; /* Adjust to match your image size */
-  height: 380px; /* Adjust to match your image size */
-  overflow: hidden;
-  background-color: #000;
-  border: 1px solid #333;
-}
 
-/* Profile image styling */
-.profile-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.3s ease, filter 0.3s ease;
+  .profile-overlay {
+    padding: 1rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
 }
-
-/* Darkens or blurs image slightly on hover to boost text readability */
-.profile-card:hover img {
-  opacity: 0.25;
-  filter: grayscale(100%);
-}
-
-/* Monospaced bio overlay container */
-.profile-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  color: #fff;
-  font-family: monospace;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  
-  /* Hidden state */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  pointer-events: none; /* Allows cursor interaction to stay smooth */
-}
-
-/* Reveal bio overlay on card hover */
-.profile-card:hover .profile-overlay {
-  opacity: 1;
-  visibility: visible;
-}
-   /* Enable absolute positioning for the overlay inside your existing wrapper */
-.hero-image-wrapper {
-  position: relative;
-  display: inline-block; /* or block depending on your layout */
-  overflow: hidden;
-  background-color: #000; /* Dark background so text pops when photo fades */
-}
-
-/* Smooth transition for your existing image */
-.hero-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: opacity 0.3s ease, filter 0.3s ease;
-}
-
-/* Dim the image on hover */
-.hero-image-wrapper:hover .hero-image {
-  opacity: 0.2;
-  filter: grayscale(100%);
-}
-
-/* Hide photo credit during hover so it doesn't clash with bio text */
-.hero-image-wrapper:hover .photo-overlay {
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-/* Monospaced bio overlay styling */
-.profile-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  color: #fff;
-  font-family: monospace;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  
-  /* Hidden by default */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  pointer-events: none;
-}
-
-/* Show bio overlay on hover */
-.hero-image-wrapper:hover .profile-overlay {
-  opacity: 1;
-  visibility: visible;
-}
-
-.profile-overlay .bio-title {
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 0.75rem;
-  border-bottom: 1px dotted #666;
-  padding-bottom: 0.25rem;
-  width: 100%;
-}
-
-.profile-overlay p {
-  margin: 0 0 0.75rem 0;
-  color: #ddd;
-}
-   }
