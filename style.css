@@ -365,19 +365,4 @@ a.meta-badge-link {
   opacity: 1;
   visibility: visible;
 }
-
-/* Styling for monospaced meta labels inside the bio */
-.profile-overlay .bio-title {
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px dotted #666;
-  padding-bottom: 0.25rem;
-  width: 100%;
-}
-
-.profile-overlay p {
-  margin: 0 0 0.75rem 0;
-  color: #ddd;
-}
    }
