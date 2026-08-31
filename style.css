@@ -310,4 +310,74 @@ a.meta-badge-link {
     transform: translateX(-50%);
     max-width: 200px;
   }
+   /* Card container holding the image and overlay */
+.profile-card {
+  position: relative;
+  width: 280px; /* Adjust to match your image size */
+  height: 380px; /* Adjust to match your image size */
+  overflow: hidden;
+  background-color: #000;
+  border: 1px solid #333;
 }
+
+/* Profile image styling */
+.profile-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Darkens or blurs image slightly on hover to boost text readability */
+.profile-card:hover img {
+  opacity: 0.25;
+  filter: grayscale(100%);
+}
+
+/* Monospaced bio overlay container */
+.profile-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #fff;
+  font-family: monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none; /* Allows cursor interaction to stay smooth */
+}
+
+/* Reveal bio overlay on card hover */
+.profile-card:hover .profile-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Styling for monospaced meta labels inside the bio */
+.profile-overlay .bio-title {
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dotted #666;
+  padding-bottom: 0.25rem;
+  width: 100%;
+}
+
+.profile-overlay p {
+  margin: 0 0 0.75rem 0;
+  color: #ddd;
+}
+   }
