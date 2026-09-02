@@ -377,14 +377,18 @@ a.meta-badge-link {
   }
 
   .profile-overlay {
-    padding: 1rem;
-    font-size: 0.78rem;
-    line-height: 1.4;
+    padding: 1.25rem 1rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+    justify-content: flex-start; /* Aligns text to top so it doesn't get cut off in the middle */
+    overflow-y: auto; /* Enables vertical scrolling inside the box */
+    -webkit-overflow-scrolling: touch;
   }
-   .hero-image {
-  width: 100%;
-  max-height: 480px; /* Gently pulls up the text section below */
-  object-fit: cover;
-  display: block;
+
+  .hero-image {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    display: block;
 }
    }
